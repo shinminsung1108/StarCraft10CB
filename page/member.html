@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인원</title>
+    <style>
+        body {
+            margin-top: 20px;
+        }
+
+        .timeline_area {
+            position: relative;
+            z-index: 1;
+        }
+
+        .single-timeline-area {
+            position: relative;
+            z-index: 1;
+            padding-left: 180px;
+        }
+
+        @media only screen and (max-width: 575px) {
+            .single-timeline-area {
+                padding-left: 100px;
+            }
+        }
+
+        .single-timeline-area .timeline-date {
+            position: absolute;
+            width: 180px;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -ms-grid-row-align: center;
+            align-items: center;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+            justify-content: flex-end;
+            padding-right: 60px;
+        }
+
+        @media only screen and (max-width: 575px) {
+            .single-timeline-area .timeline-date {
+                width: 100px;
+            }
+        }
+
+        .single-timeline-area .timeline-date::after {
+            position: absolute;
+            width: 3px;
+            height: 100%;
+            content: "";
+            background-color: #ebebeb;
+            top: 0;
+            right: 30px;
+            z-index: 1;
+        }
+
+        .single-timeline-area .timeline-date::before {
+            position: absolute;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            /* background-color: #f1c40f; */
+            content: "";
+            top: 50%;
+            right: 26px;
+            z-index: 5;
+            margin-top: -5.5px;
+        }
+
+        .single-timeline-area .timeline-date p {
+            margin-bottom: 0;
+            color: #020710;
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .single-timeline-area .single-timeline-content {
+            position: relative;
+            z-index: 1;
+            padding: 30px 30px 25px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            margin-top: 15px;
+            -webkit-box-shadow: 0 0.25rem 1rem 0 rgba(47, 91, 234, 0.125);
+            box-shadow: 0 0.25rem 1rem 0 rgba(47, 91, 234, 0.125);
+            border: 1px solid #ebebeb;
+        }
+
+        @media only screen and (max-width: 575px) {
+            .single-timeline-area .single-timeline-content {
+                padding: 20px;
+            }
+        }
+
+        .single-timeline-area .single-timeline-content .timeline-icon {
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+            width: 30px;
+            height: 30px;
+            background-color: #f1c40f;
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 30px;
+            flex: 0 0 30px;
+            text-align: center;
+            max-width: 30px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .single-timeline-area .single-timeline-content .timeline-icon i {
+            color: #ffffff;
+            line-height: 30px;
+        }
+
+        .single-timeline-area .single-timeline-content .timeline-text h6 {
+            -webkit-transition-duration: 500ms;
+            transition-duration: 500ms;
+        }
+
+        .single-timeline-area .single-timeline-content .timeline-text p {
+            font-size: 13px;
+            margin-bottom: 0;
+        }
+
+        .single-timeline-area .single-timeline-content:hover .timeline-icon,
+        .single-timeline-area .single-timeline-content:focus .timeline-icon {
+            background-color: #020710;
+        }
+
+        .single-timeline-area .single-timeline-content:hover .timeline-text h6,
+        .single-timeline-area .single-timeline-content:focus .timeline-text h6 {
+            color: #3f43fd;
+        }
+
+        .section_heading {
+            margin-top: 30px;
+        }
+
+        .fontsize {
+            font-size: 5px;
+        }
+
+        #master::before {
+            background-color: #DF013A;
+        }
+
+        #diamond::before {
+            background-color: #2ECCFA;
+        }
+
+        #platinum::before {
+            background-color: #01DF74;
+        }
+
+        #gold::before {
+            background-color: #FACC2E;
+        }
+
+        #silver::before {
+            background-color: #D8D8D8;
+        }
+
+        #bronze::before {
+            background-color: #5F4C0B;
+        }
+
+        #iron::before {
+            background-color: #585858;
+        }
+    </style>
+</head>
+<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">10CB StarCraft</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../index.html">메인화면</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="member.html">인원</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            메뉴
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">인원</a></li>
+                            <li><a class="dropdown-item disabled" href="#">리그기록(comingsoon)</a></li>
+                            <!-- <li><a class="dropdown-item" href="#">디스코드</a></li>
+                            <li><a class="dropdown-item" href="#">카카오톡</a></li> -->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="timeline_area section_padding_130">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-8 col-lg-6">
+                    <!-- Section Heading-->
+                    <div class="section_heading text-center">
+                        <h6>10CB 인원현황</h6>
+                        <h3>티어별 인원현황</h3>
+                        <div class="line"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <!-- Timeline Area-->
+                    <div class="apland-timeline-area">
+                        <!-- Single Timeline Content-->
+                        <div class="single-timeline-area">
+                            <div class="timeline-date wow fadeInLeft" data-wow-delay="0.1s"
+                                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;" id="master">
+                                <p>마스터</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.3s"
+                                        style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                                        <div class="timeline-icon" style="background-color: #DF013A;"><i class="fa fa-address-card" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="timeline-text">
+                                            <h6><B>프로토스</B></h6>
+                                            <p>강자 약자 FUNGAME 개밥토스 미첼</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.3s"
+                                        style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                                        <div class="timeline-icon" style="background-color: #DF013A;"><i class="fa fa-address-card" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="timeline-text">
+                                            <h6><b>테란</b></h6>
+                                            <p>옥수수 539</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.3s"
+                                        style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                                        <div class="timeline-icon" style="background-color: #DF013A;"><i class="fa fa-address-card" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="timeline-text">
+                                            <h6><b>저그</b></h6>
+                                            <p>카카오</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Timeline Content-->
+                        <div class="single-timeline-area">
+                            <div class="timeline-date wow fadeInLeft" data-wow-delay="0.1s"
+                                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;" id="diamond">
+                                <p class="fontsize">다이아</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.3s"
+                                        style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                                        <div class="timeline-icon" style="background-color: #2ECCFA;"><i class="fa fa-briefcase" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="timeline-text">
+                                            <h6><b>테란</b></h6>
+                                            <p>인체 도련 Tokyo</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Timeline Content-->
+                        <div class="single-timeline-area">
+                            <div class="timeline-date wow fadeInLeft" data-wow-delay="0.1s"
+                                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;" id="platinum">
+                                <p class="fontsize">플레</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.3s"
+                                        style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                                        <div class="timeline-icon" style="background-color: #01DF74;"><i class="fa fa-id-card" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="timeline-text">
+                                            <h6><b>프로토스</b></h6>
+                                            <p>디플 Falsitas pingping</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.5s"
+                                        style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
+                                        <div class="timeline-icon" style="background-color: #01DF74;"><i class="fa fa-desktop" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="timeline-text">
+                                            <h6><b>테란</b></h6>
+                                            <p>디플 선가드 Hotel</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.7s"
+                                        style="visibility: visible; animation-delay: 0.7s; animation-name: fadeInLeft;">
+                                        <div class="timeline-icon" style="background-color: #01DF74;"><i class="fa fa-picture-o" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="timeline-text">
+                                            <h6><b>저그</b></h6>
+                                            <p>주주 기어</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Timeline Content-->
+                        <div class="single-timeline-area">
+                            <div class="timeline-date wow fadeInLeft" data-wow-delay="0.1s"
+                                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;" id="gold">
+                                <p>골드</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.3s"
+                                        style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                                        <div class="timeline-icon"><i class="fa fa-id-card" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="timeline-text">
+                                            <h6><b>프로토스</b></h6>
+                                            <p>539</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.5s"
+                                        style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
+                                        <div class="timeline-icon"><i class="fa fa-desktop" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="timeline-text">
+                                            <h6><b>테란</b></h6>
+                                            <p>감자아빠 스탠다드</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.7s"
+                                        style="visibility: visible; animation-delay: 0.7s; animation-name: fadeInLeft;">
+                                        <div class="timeline-icon"><i class="fa fa-picture-o" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="timeline-text">
+                                            <h6><b>저그</b></h6>
+                                            <p>인체</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Timeline Content-->
+                        <div class="single-timeline-area">
+                            <div class="timeline-date wow fadeInLeft" data-wow-delay="0.1s"
+                                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;" id="silver">
+                                <p>실버</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.3s"
+                                        style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                                        <div class="timeline-icon" style="background-color: #D8D8D8;"><i class="fa fa-id-card" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="timeline-text">
+                                            <h6><b>테란</b></h6>
+                                            <p>무버지</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.5s"
+                                        style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
+                                        <div class="timeline-icon" style="background-color: #D8D8D8;"><i class="fa fa-desktop" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="timeline-text">
+                                            <h6><b>저그</b></h6>
+                                            <p>디플</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Timeline Content-->
+                        <div class="single-timeline-area">
+                            <div class="timeline-date wow fadeInLeft" data-wow-delay="0.1s"
+                                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;" id="bronze">
+                                <p>브론즈</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.3s"
+                                        style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                                        <div class="timeline-icon" style="background-color: #5F4C0B;"><i class="fa fa-id-card" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="timeline-text">
+                                            <h6>브론즈</h6>
+                                            <p>루나</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Timeline Content-->
+                        <div class="single-timeline-area">
+                            <div class="timeline-date wow fadeInLeft" data-wow-delay="0.1s"
+                                style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;" id="iron">
+                                <p>IRON</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
